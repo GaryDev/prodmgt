@@ -1,0 +1,48 @@
+﻿@using ProductMgt.Web.Helpers
+@model ProductMgt.ViewModel.ProductsListViewModel
+
+@{
+    ViewBag.Title = "产品列表";
+}
+
+<div id="search-form">
+    @using (Html.BeginForm("list", "product"))
+    {
+        <p>
+            产品名称: @Html.TextBoxFor(x => x.CurrentCriteria.ProductName) &nbsp;&nbsp;
+            产品条码(Sku): @Html.TextBoxFor(x => x.CurrentCriteria.ProductSku)
+            <input type="submit" value="查询" />
+        </p>
+        <p>@Html.ActionLink("新增产品", "create")</p>
+    }
+</div>
+<div id="search-result">
+    <h1>产品列表</h1>
+    <table class="Grid">
+        <tr>
+            <th style="width: 10%;">产品代码</th>
+            <th style="width: 30%;">产品名称</th>
+            <th style="width: 10%;">产品条码(Sku)</th>
+            <th class="NumericCol" style="width: 20%;">产品价格</th>
+            <th style="width: 30%;">产品描述</th>
+        </tr>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.Code, "edit", new { item.Sku })</td>
+                <td>@item.Name</td>
+                <td>@item.Sku</td>
+                <td class="NumericCol">@item.Price.ToString("c")</td>
+                <td>@item.Description</td>
+            </tr>
+        }
+    </table>
+    @if (Model.PageInfo != null && Model.PageInfo.EndPage > 1)
+    {
+        <div class="pager-section">
+            <ul class="pagination">
+                @Html.PageLinks(Model.PageInfo, x => Url.Action("list", new { page = x }))
+            </ul>
+        </div>
+    }
+</div>

@@ -1,0 +1,11 @@
+*.suo
+/.vs
+/packages
+/ProductMgt.DataModel/bin
+/ProductMgt.DataModel/obj
+/ProductMgt.Entity/bin
+/ProductMgt.Entity/obj
+/ProductMgt.Service/bin
+/ProductMgt.Service/obj
+/ProductMgt.Web/bin
+/ProductMgt.Web/obj

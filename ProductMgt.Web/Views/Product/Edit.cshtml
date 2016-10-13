@@ -1,0 +1,25 @@
+﻿@model ProductMgt.ViewModel.ProductViewModel
+
+@{
+    ViewBag.Title = Model.ProductID > 0 ? "编辑产品 " + @Model.Name : "创建产品";
+}
+
+@if (Model.ProductID == 0)
+{
+    <h1>创建产品</h1>
+}
+else
+{
+    <h1>编辑产品 @Model.Name</h1>
+}
+
+@Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
+
+@using (Html.BeginForm("edit", "product", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="保存" />
+    @Html.ActionLink("返回列表", "list")
+}
+
+@Scripts.Render("~/bundles/product")
