@@ -85,12 +85,12 @@ DIV.pager-section {
         content: ":";
     }
 
-input[type=submit] {
+/*input[type=submit] {
     width: 80px;
-}
+}*/
 
 .text-box {
-    width: 75%;
+    width: 30%;
 }
 
 .multi-line {

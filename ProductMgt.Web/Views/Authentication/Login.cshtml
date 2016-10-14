@@ -1,14 +1,13 @@
 ﻿@model ProductMgt.ViewModel.LoginViewModel
 
 @{
-    ViewBag.Title = "Product Management: Log in";
+    ViewBag.Title = "产品管理系统: 用户登录";
 }
 
-<h1>Login</h1>
-<p>Please log in to access administrative area:</p>
+<h1>用户登录</h1>
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(true, string.Empty, new { @class = "text-danger" })
     @Html.EditorForModel()
-    <p><input type="submit" value="Log in" /></p>
+    <p><input type="submit" value="登录" class="btn btn-primary" /></p>
 }

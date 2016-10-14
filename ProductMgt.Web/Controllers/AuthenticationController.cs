@@ -32,11 +32,12 @@ namespace ProductMgt.Web.Controllers
             {
                 if (_authService.Authenticate(model.UserName, model.Password))
                 {
-                    return Redirect(returnUrl ?? Url.Action("Index", "Product"));
+                    _authService.SetSession(HttpContext.ApplicationInstance.Context);
+                    return Redirect(returnUrl ?? Url.Action("List", "Product"));
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Incorrect username or password");
+                    ModelState.AddModelError(string.Empty, "用户名或密码错误");
                     return View();
                 }
             }

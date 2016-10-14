@@ -11,16 +11,22 @@ using System.Web.Mvc;
 
 namespace ProductMgt.Web.Controllers
 {
-    //[AuthorizationRequired]
+    [AuthorizationRequired]
     [RoutePrefix("product")]
     public class ProductController : Controller
     {
-        private const int PAGE_SIZE = 8;
+        private const int PAGE_SIZE = 10;
         private IProductService _productService;
 
         public ProductController(IProductService productService)
         {
             _productService = productService;
+        }
+
+        [Route("index")]
+        public ViewResult Index(string mtoken = null)
+        {
+            return View();
         }
 
         [Route("list")]
@@ -98,24 +104,12 @@ namespace ProductMgt.Web.Controllers
             Exception ex = filterContext.Exception;
             filterContext.ExceptionHandled = true;
 
-            if (filterContext.HttpContext.Request.HttpMethod == "GET")
+            var model = new HandleErrorInfo(filterContext.Exception, "Controller", "Action");
+            filterContext.Result = new ViewResult()
             {
-                filterContext.HttpContext.Response.StatusCode = 200;
-                filterContext.Result = new JsonResult
-                {
-                    Data = new { return_code = "FAIL", return_msg = ex.Message },
-                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
-                };
-            }
-            else
-            {
-                var model = new HandleErrorInfo(filterContext.Exception, "Controller", "Action");
-                filterContext.Result = new ViewResult()
-                {
-                    ViewName = "Error",
-                    ViewData = new ViewDataDictionary(model)
-                };
-            }
+                ViewName = "Error",
+                ViewData = new ViewDataDictionary(model)
+            };
         }
 
         private void UpdateProductListViewModel(ProductsListViewModel model, SearchCriteria criteria, int page = 1)
