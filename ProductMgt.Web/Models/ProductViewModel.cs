@@ -18,12 +18,12 @@ namespace ProductMgt.ViewModel
         public string Code { get; set; }
 
         [Required(ErrorMessage = "请输入产品名称")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "产品名称超出最大长度50")]
         [Display(Name = "产品名称", Order = 2)]
         public string Name { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [StringLength(120)]
+        [StringLength(120, ErrorMessage = "产品描述超出最大长度120")]
         [Display(Name = "产品描述", Order = 3)]
         public string Description { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProductMgt.Config;
 using ProductMgt.Entity;
 using ProductMgt.Service;
 using ProductMgt.ViewModel;
@@ -15,7 +16,7 @@ namespace ProductMgt.Web.Controllers
     [RoutePrefix("product")]
     public class ProductController : Controller
     {
-        private const int PAGE_SIZE = 10;
+        private static int PAGE_SIZE = Convert.ToInt32(AppConfig.Instance.PageSize);
         private IProductService _productService;
 
         public ProductController(IProductService productService)

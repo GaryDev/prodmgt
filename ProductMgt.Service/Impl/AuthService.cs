@@ -10,37 +10,17 @@ using System.Net;
 using System.IO;
 using System.Web.Script.Serialization;
 using ProductMgt.Entity;
+using ProductMgt.Config;
 using System.Web;
 
 namespace ProductMgt.Service
 {
     public class AuthService : IAuthService
     {
-        private static string CraServiceUrl
-        {
-            get
-            {
-                if (ConfigurationManager.AppSettings.AllKeys.Contains("CraServiceUrl"))
-                    return ConfigurationManager.AppSettings["CraServiceUrl"];
-
-                return null;
-            }
-        }
-
-        private static string SessionTimeout
-        {
-            get
-            {
-                if (ConfigurationManager.AppSettings.AllKeys.Contains("SessionTimeout"))
-                    return ConfigurationManager.AppSettings["SessionTimeout"];
-
-                return Constants.SESSION_TIMEOUT.ToString();
-            }
-        }
 
         public bool Authenticate(string username, string password)
         {
-            string url = CraServiceUrl;
+            string url = AppConfig.Instance.CraServiceUrl;
             if (string.IsNullOrEmpty(url))
                 return false;
 
@@ -91,12 +71,12 @@ namespace ProductMgt.Service
         public void SetSession(HttpContext context)
         {
             context.Session[Constants.LOGIN_KEY] = true;
-            context.Session.Timeout = Convert.ToInt32(SessionTimeout);
+            context.Session.Timeout = Convert.ToInt32(AppConfig.Instance.SessionTimeout);
         }
 
         public bool ValidateToken(string token)
         {
-            string url = CraServiceUrl;
+            string url = AppConfig.Instance.CraServiceUrl;
             if (string.IsNullOrEmpty(url))
                 return false;
 

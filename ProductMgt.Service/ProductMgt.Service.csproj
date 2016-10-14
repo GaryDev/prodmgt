@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
     <Compile Include="IAuthService.cs" />
     <Compile Include="Impl\AuthService.cs" />
     <Compile Include="Impl\ProductService.cs" />

@@ -1,6 +1,7 @@
 *.suo
 /.vs
 /packages
+/publish
 /ProductMgt.DataModel/bin
 /ProductMgt.DataModel/obj
 /ProductMgt.Entity/bin

@@ -40,7 +40,6 @@
       <HintPath>..\DLLs\Microsoft.Practices.ObjectBuilder.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConfig.cs" />
     <Compile Include="Impl\UserRepository.cs" />
     <Compile Include="IProductRespository.cs" />
     <Compile Include="Impl\ProductRepository.cs" />

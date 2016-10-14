@@ -7,6 +7,7 @@ using ProductMgt.Entity;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using System.Data.Common;
 using System.Data;
+using ProductMgt.Config;
 
 namespace ProductMgt.DataModel
 {
